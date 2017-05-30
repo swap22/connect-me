@@ -48,7 +48,8 @@
             $date = date("Y-m-d"); //Current date
 			
 			if($em == $em2){  // checking if two email are same or not
-				     //Check if email is in valid format 
+				     
+					 //Check if email is in valid format 
 						if(filter_var($em, FILTER_VALIDATE_EMAIL)) {
 							 $em = filter_var($em, FILTER_VALIDATE_EMAIL); // email is validated formated email 
 
@@ -70,6 +71,26 @@
             }else{
                 echo "Emails are not matched";
             }
+			// checking first name is greater than 2 and lesser than 25
+            if(strlen($fname) > 25 || strlen($fname) < 3) {
+		        echo "Your first name must be between 3 and 25 characters";
+            }
+            // checking last name is greater than 2 and lesser than 25
+            if(strlen($lname) > 25 || strlen($lname) < 3) {
+		        echo "Your last name must be between 3 and 25 characters";
+            }
+
+            // comparing the two password are same
+            if($password != $password2) {
+		        echo"Your passwords do not match";
+	        }else {
+	        	if(preg_match('/[^A-Za-z0-9]/', $password)) {  //checking whether password is simple or not
+			    echo"Your password can only contain english characters or numbers";
+                }
+            }
+            if(strlen($password > 30 || strlen($password) < 7)) {
+	    	    echo "Your password must be betwen 7 and 30 characters";
+	        }
 
 
 
