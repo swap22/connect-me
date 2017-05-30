@@ -4,7 +4,7 @@
         echo "Failed to connect to database".mysqli_connect_errno();
     }
 
-    //Declaring variables to prevent errors
+    //Declaring variables to prevent errors so that initial it is null
         $fname = ""; //First name
         $lname = ""; //Last name
         $em = ""; //email
@@ -46,6 +46,31 @@
             $password2 = strip_tags($_POST['reg_password2']); 
 
             $date = date("Y-m-d"); //Current date
+			
+			if($em == $em2){  // checking if two email are same or not
+				     //Check if email is in valid format 
+						if(filter_var($em, FILTER_VALIDATE_EMAIL)) {
+							 $em = filter_var($em, FILTER_VALIDATE_EMAIL); // email is validated formated email 
+
+							 //Check if email already exists 
+							$e_check = mysqli_query($con, "SELECT email FROM users WHERE email='$em'");
+
+							//Count the number of rows returned
+							$num_rows = mysqli_num_rows($e_check);
+
+							if($num_rows > 0) {
+								echo "email already in use ";
+							}
+
+						}else{
+							echo "invalid email format";
+						}
+
+
+            }else{
+                echo "Emails are not matched";
+            }
+
 
 
          }
