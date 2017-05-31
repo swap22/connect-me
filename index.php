@@ -1,3 +1,7 @@
+<?php
+    require 'config/config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +11,6 @@
     <title>Connect Me</title>
 </head>
 <body>
-    Welcome to Connect me !!!!!!!!!!!
+    hi swapnil!!!!!!!!!
 </body>
 </html>
