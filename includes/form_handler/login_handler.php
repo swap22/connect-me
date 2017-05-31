@@ -14,8 +14,10 @@ if(isset($_POST['login_button'])) {
 		$row = mysqli_fetch_array($check_database_query);
 		$username = $row['username']; //so from return row we will load its user name 
 
+        // checking the whether the user is deactivated account or not
 		$user_closed_query = mysqli_query($con, "SELECT * FROM users WHERE email='$email' AND user_closed='yes'");
 		if(mysqli_num_rows($user_closed_query) == 1) {
+            // if the account is deactivate the activate it again
 			$reopen_account = mysqli_query($con, "UPDATE users SET user_closed='no' WHERE email='$email'");
 		}
 
