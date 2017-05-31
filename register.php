@@ -91,6 +91,41 @@
             if(strlen($password > 30 || strlen($password) < 7)) {
 	    	    array_push($error_array, "Your password must be betwen 7 and 30 characters<br>");
 	        }
+			if(empty($error_array)){
+                //generate the encrypted password to store in database
+                $password=md5($password); // can use md5(md5(id)$password) for extra security
+
+                //generate username 
+                $username = strtolower($fname . "_" . $lname); 
+                //check whether username are present or not
+        		$check_username_query = mysqli_query($con, "SELECT username FROM users WHERE username='$username'");
+                
+                //if user name is present then we will add number to the user name
+                $i=0; //initializing the number to add into user name 
+                while(mysqli_num_rows($check_username_query) != 0) {
+        			$i++; //increment the i
+                    $username = $username . "_" . $i;
+                    //to check again this user name present or not
+		        	$check_username_query = mysqli_query($con, "SELECT username FROM users WHERE username='$username'");
+                }
+                
+                //Profile picture assignment
+                $rand = rand(1, 2); //Random number between 1 and 2
+
+                if($rand == 1)
+                    $profile_pic = "assets/images/profile_pics/defaults/head_green_sea.png";
+                else if($rand == 2)
+                    $profile_pic = "assets/images/profile_pics/defaults/head_red.png";
+                
+                $query = mysqli_query($con, "INSERT INTO users VALUES ('', '$fname', '$lname', '$username', '$em', '$password', '$date', '$profile_pic', '0', '0', 'no', ',')");
+                array_push($error_array, "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>");
+
+                //Clear session so initilize with zero
+                $_SESSION['reg_fname'] = "";
+                $_SESSION['reg_lname'] = "";
+                $_SESSION['reg_email'] = "";
+                $_SESSION['reg_email2'] = "";
+
 
 
 
@@ -144,6 +179,8 @@
 					else if(in_array("Your password can only contain english characters or numbers<br>", $error_array)) echo "Your password can only contain english characters or numbers<br>";
 		    		else if(in_array("Your password must be betwen 7 and 30 characters<br>", $error_array)) echo "Your password must be betwen 7 and 30 characters<br>"; ?>
         <input type="submit" name="register_button" value="submit" require>
+	        <br>
+			<?php if(in_array("<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>", $error_array)) echo "<span style='color: #14C800;'>You're succesfull register ! Go ahead and login!</span><br>"; ?>
 
     </form>
 </body>
