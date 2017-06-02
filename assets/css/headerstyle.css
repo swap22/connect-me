@@ -60,5 +60,88 @@ nav a:hover {
 	color: #fff;
 }
 
+.wrapper {
+	margin: 0 auto;
+	top: 50px;
+	position: relative;
+	padding: 0 10px;
+	width: 75%;
+	min-width: 950px;
+}
+.column {
+	background-color: #fff;
+	padding: 10px;
+	border: 1px solid #D3D3D3;
+	border-radius: 5px;
+	box-shadow: 2px 2px 1px #D3D3D3;
+	z-index: -1;
+	color: #555;
+}
+
+.user_details {
+	width: 250px;
+	float: left;
+	margin-bottom: 20px;
+}
+
+.user_details img {
+	height: 100px;
+	border-radius: 5px;
+	margin-right: 5px;
+}
+.user_details_left_right {
+	width: 120px;
+	display: inline-table;
+	float:right;
+	height: 100px;
+}
+.main_column {
+	float:right;
+	width: 70%;
+	z-index: -1;
+	min-height: 170px;
+}
+.post_form {
+	width: 100%;
+}
+
+.post_form textarea {
+	width: 81%;
+	height: 60px;
+	border-radius: 3px;
+	margin-right: 5px;
+	border: 1px solid #D3D3D3;
+	font-size: 12px;
+	padding: 5px;
+}
+
+textarea:focus {
+	outline: 0;
+}
+
+.post_form input[type="submit"] {
+	width: 11%;
+	height: 60px;
+	border: none;
+	border-radius: 3px;
+	background-color: #E35BE7;
+	font-family: 'Bellota-BoldItalic', sans-serif;
+	color: #F1D3F3;
+	text-shadow: #D573E2 0.5px 0.5px 0px;
+	font-size: 150%;
+	position: absolute;
+	outline: 0;
+	margin: 0;
+}
+
+.post_form input[type="submit"]:hover {
+	padding: 5px 4px 4px 5px;
+	font-size: 200%;
+}
+
+.post_form input[type="submit"]:active {
+	padding: 5px 4px 4px 5px;
+	color: #D6E0DB;
+}
 
 

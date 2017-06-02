@@ -35,10 +35,7 @@ else {
 		<div class="logo">
 			<a href="index.php">Connect ME!</a>
 		</div>
-        	<nav>
-                    
-
-
+        	    <nav>
                     <a href="#">
                         <?php echo $user['first_name']; ?>
                     </a>
@@ -61,15 +58,12 @@ else {
                         <i class="fa fa-sign-out fa-lg"></i>
                     </a>
 
-		</nav>
-
-		
-			
-	</div>
+		        </nav>
+    </div>
    <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.js"></script>
 	
 	
-	
+	<div class="wrapper">
 	
     
