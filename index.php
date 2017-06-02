@@ -1,9 +1,11 @@
 <?php
-    require 'includes/header.php';
-    session_destroy(); //destroying the session if not log in 
+    include ("includes/header.php");
+
 
 ?>
 
-gvmhgvmghmgmhjgb,
+
+	</div>
+
 </body>
 </html>
