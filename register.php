@@ -14,6 +14,19 @@
     <link rel="stylesheet" type="text/css" href="assets/css/register_style.css">
 </head>
 <body>
+	<?php  
+
+	if(isset($_POST['register_button'])) {  // if sign up button pressed and there is an error in the sign up
+		echo '
+		<script>  
+		$(document).ready(function() {
+			$("#first").hide();
+			$("#second").show();
+		});
+		</script>
+		';// so we keep the sign in hide mode an sign up on show
+		}
+	?>
 
 	<div class="main_page">
 		<div class="login_box">
@@ -74,7 +87,7 @@
 					<?php if(in_array("Your passwords do not match<br>", $error_array)) echo "Your passwords do not match<br>"; 
 							else if(in_array("Your password can only contain english characters or numbers<br>", $error_array)) echo "Your password can only contain english characters or numbers<br>";
 							else if(in_array("Your password must be betwen 7 and 30 characters<br>", $error_array)) echo "Your password must be betwen 7 and 30 characters<br>"; ?>
-				<input type="submit" name="register_button" value="submit" require>
+				<input type="submit" name="register_button" value="Sign Up" require>
 					<br>
 					<?php if(in_array("<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>", $error_array)) echo "<span style='color: #14C800;'>You're succesfull register ! Go ahead and login!</span><br>"; ?>
 				<a href="#" id="signin" class="signin">Already have an account? Sign in here!</a>
