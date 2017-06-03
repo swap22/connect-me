@@ -1,5 +1,10 @@
 <?php
     require 'config/config.php';
+    include("includes/classes/User.php");
+    include("includes/classes/Post.php");
+    include("includes/classes/Message.php");
+    include("includes/classes/Notification.php");
+
 
 
 if (isset($_SESSION['username'])) { // checking whether user log in or not
@@ -54,9 +59,10 @@ else {
                     <a href="#">
                         <i class="fa fa-cog fa-lg"></i>
                     </a>
-                    <a href="#">
+                    <a href="includes/handlers/logout.php">
                         <i class="fa fa-sign-out fa-lg"></i>
                     </a>
+                    
 
 		        </nav>
     </div>
