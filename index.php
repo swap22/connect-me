@@ -32,7 +32,10 @@ if(isset($_POST['post'])){
 			    <hr>
 
 		    </form>
-
+			<?php
+			$post = new Post($con, $userLoggedIn);
+			$post->loadPostsFriends();
+			?>
 	    <div class="posts_area"></div>
     </div>
 
