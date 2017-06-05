@@ -13,8 +13,9 @@ body {
 }
 
 a {
-	color: #4D0738;
+	color: #DF4BEC;
 	text-decoration: none;
+	font-weight: bold;
 }
 
 .top_bar {
@@ -143,5 +144,21 @@ textarea:focus {
 	padding: 5px 4px 4px 5px;
 	color: #D6E0DB;
 }
+.status_post {
+	width: 96%;
+	font-size: 15px;
+	padding: 0px 5px;
+	min-height: 75px;
+}
+
+.post_profile_pic {
+	float: left;
+	margin-right: 9px;
+}
+
+.post_profile_pic img {
+	border-radius: 5px;
+}
+
 
 
