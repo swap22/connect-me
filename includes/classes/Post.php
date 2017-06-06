@@ -11,7 +11,7 @@ class Post{
     public function submitPost($body, $user_to) {
 		$body = strip_tags($body); //removes html tags 
 		$body = mysqli_real_escape_string($this->con, $body); // remove special character such as ' !.. so that it treat as one sentence
-		$check_empty = preg_replace('/\s+/', '', $body); //Deltes all spaces 
+		$check_empty = preg_replace('/\s+/', '', $body); //Deletes all spaces 
 			
 			if($check_empty != "") { // check whether user submitted the empty spaces as post
 
@@ -38,11 +38,27 @@ class Post{
 		
 	}
 	//function to load posts
-	public function loadPostsFriends(){
+	public function loadPostsFriends($data, $limit){
+
+				$page = $data['page']; 
+		$userLoggedIn = $this->user_obj->getUsername();
+
+		if($page == 1) 
+			$start = 0;
+		else 
+			$start = ($page - 1) * $limit;
+
+
 		$str = ""; //String to return 
 		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' ORDER BY id DESC");
 
-		while($row = mysqli_fetch_array($data_query)) {
+		if(mysqli_num_rows($data_query) > 0) {
+
+
+			$num_iterations = 0; //Number of results checked (not necasserily posted)
+			$count = 1;
+
+			while($row = mysqli_fetch_array($data_query)) {
 				$id = $row['id'];
 				$body = $row['body'];
 				$added_by = $row['added_by'];
@@ -53,36 +69,50 @@ class Post{
 					$user_to = "";
 				}
 				else {
-					$user_to_obj = new User($con, $row['user_to']); //object is created
+					$user_to_obj = new User($con, $row['user_to']);
 					$user_to_name = $user_to_obj->getFirstAndLastName();
-					$user_to = "to <a href='" . $row['user_to'] ."'>" . $user_to_name . "</a>"; // to display user name with its link
+					$user_to = "to <a href='" . $row['user_to'] ."'>" . $user_to_name . "</a>";
 				}
 
 				//Check if user who posted, has their account closed
-				$added_by_obj = new User($this->con, $added_by); // addded by object
+				$added_by_obj = new User($this->con, $added_by);
 				if($added_by_obj->isClosed()) {
 					continue;
 				}
-				 // if user is not closed then we will display its information on post 
+  
+				
+
+					if($num_iterations++ < $start)
+						continue; 
+
+
+					//Once 10 posts have been loaded, break
+					if($count > $limit) {
+						break;
+					}
+					else {
+						$count++;
+					}
+
 					$user_details_query = mysqli_query($this->con, "SELECT first_name, last_name, profile_pic FROM users WHERE username='$added_by'");
 					$user_row = mysqli_fetch_array($user_details_query);
 					$first_name = $user_row['first_name'];
 					$last_name = $user_row['last_name'];
 					$profile_pic = $user_row['profile_pic'];
 
-					//setting time in the post 
+
+					//Timeframe
 					$date_time_now = date("Y-m-d H:i:s");
-					$start_date = new DateTime($date_time); //created object Time of post
-					$end_date = new DateTime($date_time_now); // created object of Current time
-					$interval = $start_date->diff($end_date); //by using Difference function find the difference between dates 
-					
-					if($interval->y >= 1) {  // checking the interval is posted in in current year or long back
+					$start_date = new DateTime($date_time); //Time of post
+					$end_date = new DateTime($date_time_now); //Current time
+					$interval = $start_date->diff($end_date); //Difference between dates 
+					if($interval->y >= 1) {
 						if($interval == 1)
 							$time_message = $interval->y . " year ago"; //1 year ago
 						else 
 							$time_message = $interval->y . " years ago"; //1+ year ago
-					} // logic for month and days
-					else if ($interval-> m >= 1) { // checking for the month if the month is passed
+					}
+					else if ($interval-> m >= 1) {
 						if($interval->d == 0) {
 							$days = " ago";
 						}
@@ -92,6 +122,8 @@ class Post{
 						else {
 							$days = $interval->d . " days ago";
 						}
+
+
 						if($interval->m == 1) {
 							$time_message = $interval->m . " month". $days;
 						}
@@ -132,6 +164,7 @@ class Post{
 							$time_message = $interval->s . " seconds ago";
 						}
 					}
+
 					$str .= "<div class='status_post'>
 								<div class='post_profile_pic'>
 									<img src='$profile_pic' width='50'>
@@ -151,9 +184,13 @@ class Post{
 
 			} //End while loop
 
-			
-		echo $str;
-
+			if($count > $limit) 
+				$str .= "<input type='hidden' class='nextPage' value='" . ($page + 1) . "'>
+							<input type='hidden' class='noMorePosts' value='false'>";
+			else 
+				$str .= "<input type='hidden' class='noMorePosts' value='true'><p style='text-align: centre;'> No more posts to show! </p>";
+		}
+  	echo $str;
 	}
 }
 ?>
