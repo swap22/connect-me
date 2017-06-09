@@ -31,7 +31,8 @@ else {
 	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/headerstyle.css">
-	
+     <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
 </head>
 </head>
 <body>
@@ -66,8 +67,7 @@ else {
 
 		        </nav>
     </div>
-   <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.js"></script>
+  
 	
 	
 	<div class="wrapper">
