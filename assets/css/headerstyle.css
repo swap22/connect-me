@@ -186,21 +186,21 @@ textarea:focus {
 }
 #comment_form input[type="submit"] {
 	border:none;
-	background-color: #20AAE5;
-	color: #156588;
+	background-color: #F348C8;
+	color: #E24BCE;
 	border-radius: 5px;
 	width: 13%;
 	height: 35px;
 	margin-top: 3px;
 	position: absolute;
 	font-family: 'Bellota-BoldItalic', sans-serif;
-	text-shadow: #73B6E2 0.5px 0.5px 0px;
+	text-shadow: #D98AF1 0.5px 0.5px 0px;
 }
 
 .newsfeedPostOptions {
 	padding: 0px;
 	text-decoration: none;
-	color:#20AAE5;
+	color:#E834F8;
 	border:none;
 }
 
@@ -214,7 +214,7 @@ textarea:focus {
 	background-color: transparent;
 	border: none;
 	font-size: 14px;
-	color: #3498db;
+	color: #C40BB4;
 	padding: 0;
 	height: auto;
 	width: auto;
@@ -234,9 +234,9 @@ textarea:focus {
 	height: 100%;
 	float: left;
 	position: relative;
-	background-color: #37B0E9;
-	border-right: 10px solid #83D6FE;
-	color: #CBEAF8;
+	background-color: #E564F7;
+	border-right: 10px solid #D86DEE;
+	color: #E5B8EE;
 	margin-right: 20px;
 }
 
@@ -244,13 +244,13 @@ textarea:focus {
 	min-width: 80px;
 	width: 55%;
 	margin: 20px;
-	border: 5px solid #83D6FE;
+	border: 5px solid #F483FE;
 	border-radius: 100px;
 }
 
 .profile_info {
 	display: list-item;
-	background-color: #2980b9;
+	background-color: #EC47D6;
 	width: 100%;
 	padding: 10px 0 10px 0;
 }
